@@ -5,9 +5,9 @@ function App() {
     return (
         <>
             <div className="panel top-panel">
-                <Editor />
-                <Editor />
-                <Editor />
+                <Editor language="xml" title="HTML" />
+                <Editor language="css" title="CSS" />
+                <Editor language="javascript" title="JS" />
             </div>  
             <div className="bottom-panel">
                 <iframe title="output" sandbox="allow-scripts" frameBorder="0" width="100%" height="100%" />
