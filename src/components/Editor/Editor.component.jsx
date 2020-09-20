@@ -22,8 +22,11 @@ import 'codemirror/addon/fold/foldgutter';
 import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/comment-fold';
 import 'codemirror/addon/fold/foldgutter.css';
+import './Editor.styles.scss'
 
 function Editor({ title, language, value, onChange, theme }) {
+
+    const [open, setOpen] = useState(true)
 
     function handleChange(editor, data, value) {
         onChange(value)
@@ -43,10 +46,10 @@ function Editor({ title, language, value, onChange, theme }) {
     const ref = useRef(theme)
 
     return (
-        <div className="container">
+        <div className={`container ${open ? '' : 'collapsed'}`}>
             <div className="title">
                 {title}
-                <button>O</button>
+                <button onClick={() => setOpen(!open)}>O</button>
                 <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />
             </div>
             <ControlledEditor onBeforeChange={handleChange} value={value} className="code" options={{
@@ -55,9 +58,7 @@ function Editor({ title, language, value, onChange, theme }) {
                 lint: true,
                 lineNumbers: true,
                 theme: defaultOption,
-                lineWrapping: true,
-                smartIndent: true,
-                lineNumbers: true,
+                smartIndent: false,
                 foldGutter: true,
                 gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
                 autoCloseTags: true,

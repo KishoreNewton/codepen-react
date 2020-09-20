@@ -1,0 +1,7 @@
+.collapsed {
+    flex-grow: 0 !important;
+}
+
+.collapsed .CodeMirror-scroll {
+    position: absolute;
+}
