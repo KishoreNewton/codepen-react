@@ -35,7 +35,7 @@ function Editor({ title, language, value, onChange, theme }) {
             <div className="title">
                 {title}
                 <button>O</button>
-                <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />;
+                <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />
             </div>
             <ControlledEditor onBeforeChange={handleChange} value={value} className="code" options={{
                 lineWrapping: true,
