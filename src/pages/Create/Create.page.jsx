@@ -37,7 +37,7 @@ function Create(props) {
         } else {
             return
         }
-    }, [])
+    }, [id])
 
     useEffect(() => {
         const timeout = setTimeout(() => { 

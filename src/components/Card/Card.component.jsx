@@ -13,31 +13,7 @@ function Card() {
         setOffline(local)
     }, [])
 
-    const cardTemplate = offline.map((code) => {
-        console.log(code)
-        return(
-            <Link to={`create/${code.id}`} key={code.id}>
-                <article className="card">
-                    <header className="card-header">
-                        <p>May 25th 2020</p>
-                        <h2>Card</h2>
-                    </header>
-                    <div className="card-author">
-                        <span className="author-avatar">
-                            <img src="avatar.jpg" />
-                        </span>
-                        <svg className="half-circle" viewBox="0 0 106 57">
-                            <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-                        </svg>
-                        <div className="author-name">
-                            <div className="author-name-prefix">Author</div>
-                            No Names
-                        </div>
-                    </div>
-                </article>
-            </Link>
-        )
-    })
+    
 
     return (
         <section className="card-list">
@@ -52,7 +28,33 @@ function Card() {
                 </div>
             </article>
         </Link>
-        {cardTemplate}
+        {offline && offline.map((code) => {
+        return(
+            <div key={code.id}>
+                <Link to={`create/${code.id}`} >
+                    <article className="card">
+                        <header className="card-header">
+                            <p>May 25th 2020</p>
+                            <h2>{code.title || 'draft'}</h2>
+                            <h6>{code.id}</h6>
+                        </header>
+                        <div className="card-author">
+                            <span className="author-avatar">
+                                <img src="avatar.jpg" alt="face" />
+                            </span>
+                            <svg className="half-circle" viewBox="0 0 106 57">
+                                <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
+                            </svg>
+                            <div className="author-name">
+                                <div className="author-name-prefix">Author</div>
+                                {code.name || 'No Names'}
+                            </div>
+                        </div>
+                    </article>
+                </Link> 
+            </div>
+        )
+    })}
     </section>
     )
 }
