@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/dracula.css'
 import 'codemirror/theme/the-matrix.css'
 import 'codemirror/theme/eclipse.css'
+import 'codemirror/theme/cobalt.css'
+import 'codemirror/theme/ambiance.css'
 import 'codemirror/theme/tomorrow-night-eighties.css'
 import 'codemirror/mode/xml/xml'
 import 'codemirror/mode/javascript/javascript'
@@ -23,6 +25,7 @@ import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/comment-fold';
 import 'codemirror/addon/fold/foldgutter.css';
 import './Editor.styles.scss'
+import  { ReactComponent as Resize } from '../../assets/resize.svg'
 
 function Editor({ title, language, value, onChange, theme }) {
 
@@ -32,8 +35,17 @@ function Editor({ title, language, value, onChange, theme }) {
         onChange(value)
     }
 
+    // const options = [
+    //     'dracula', 'the-matrix', 'eclipse', 'tomorrow-night-eighties'
+    // ]
+
     const options = [
-        'dracula', 'the-matrix', 'eclipse', 'tomorrow-night-eighties'
+        { value: 'dracula', label: 'dracula' },
+        { value: 'the-matrix', label: 'matrix' },
+        { value: 'eclipse', label: 'eclipse' },
+        { value: 'tomorrow-night-eighties', label: 'knight' },
+        { value: 'cobalt', label: 'cobalt' },
+        { value: 'ambiance', label: 'rust' }
     ]
 
     function changeValue(value) {
@@ -41,18 +53,18 @@ function Editor({ title, language, value, onChange, theme }) {
         changeOption(value.value)
     }
     
-    const [defaultOption, changeOption] = useState(options[0])
+    const [defaultOption, changeOption] = useState(options[0].value)
 
     const ref = useRef(theme)
 
     return (
         <div className={`container ${open ? '' : 'collapsed'}`}>
             <div className="title">
-                {title}
-                <button onClick={() => setOpen(!open)}>O</button>
-                <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />
+                {open && title}
+                <button className="resizebtn" onClick={() => setOpen(!open)}><Resize className="resize" /></button>
+                {open && <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />}
             </div>
-            <ControlledEditor onBeforeChange={handleChange} value={value} className="code" options={{
+            {open && <ControlledEditor onBeforeChange={handleChange} value={value} className="code" options={{
                 lineWrapping: true,
                 mode: language,
                 lint: true,
@@ -68,7 +80,7 @@ function Editor({ title, language, value, onChange, theme }) {
                 extraKeys: {
                   'Ctrl-Space': 'autocomplete'
                 }
-            }} />
+            }} />}
         </div>
     )
 }
