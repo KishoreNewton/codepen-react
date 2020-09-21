@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, {  useRef, useState } from 'react'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/dracula.css'
 import 'codemirror/theme/the-matrix.css'
@@ -23,6 +23,7 @@ import 'codemirror/addon/fold/brace-fold';
 import 'codemirror/addon/fold/comment-fold';
 import 'codemirror/addon/fold/foldgutter.css';
 import './Editor.styles.scss'
+import  { ReactComponent as Resize } from '../../assets/resize.svg'
 
 function Editor({ title, language, value, onChange, theme }) {
 
@@ -49,8 +50,8 @@ function Editor({ title, language, value, onChange, theme }) {
         <div className={`container ${open ? '' : 'collapsed'}`}>
             <div className="title">
                 {title}
-                <button onClick={() => setOpen(!open)}>O</button>
-                <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />
+                <button className="resizebtn" onClick={() => setOpen(!open)}><Resize className="resize" /></button>
+                {open && <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />}
             </div>
             <ControlledEditor onBeforeChange={handleChange} value={value} className="code" options={{
                 lineWrapping: true,

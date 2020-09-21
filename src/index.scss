@@ -1,11 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500&display=swap');
 
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(to left, #96A6BF, #63738C);
+    box-shadow: inset 0 0 1px 1px #5C6670;
+}
+  
+body::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: #eee;
+    box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0,0,0,0.3)
+}
+  
+body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to left, #8391A6, #536175);
+}
+
+
 body {
     margin: 0;
     font-family: 'Comfortaa', cursive;
 }
 
 .top-panel {
+    overflow: scroll;
     background-color: #0e0e0e;
     border-bottom: 3px dotted rgb(47, 47, 47);
 }
@@ -13,6 +32,18 @@ body {
 .panel {
     height: 45vh;
     display: flex;
+}
+
+.panel::-webkit-scrollbar {
+    width: 0.25rem;
+}
+
+.panel::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+.panel::-webkit-scrollbar-thumb {
+    background: #6649b8;
 }
 
 .bottom-panel {
