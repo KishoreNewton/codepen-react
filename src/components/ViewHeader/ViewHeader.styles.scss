@@ -1,0 +1,39 @@
+.navbar{
+    height: 40px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    // width: 100%;
+    background: #0c414e; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(to bottom, #252525 , 	#0e0e0e); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(to bottom, #252525 , 	#0e0e0e); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(to bottom, #252525 , 	#0e0e0e); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, 	#252525 , 	#0e0e0e); /* Standard syntax (must be last) */            
+  }
+  
+  .save, .add, .signup {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-top: .7rem;
+    padding-left: 1%;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    width: 100%;
+  }
+  
+  .logo {
+    text-align: left;
+  }
+  
+  .signup {
+    text-align: right;
+    padding-right: 1%;
+  }
+  
+  .add {
+    text-align: center;
+  }

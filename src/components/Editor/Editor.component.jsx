@@ -62,7 +62,7 @@ function Editor({ title, language, value, onChange, theme }) {
             <div className="title">
                 {open && title}
                 <button className="resizebtn" onClick={() => setOpen(!open)}><Resize className="resize" /></button>
-                {open && <Dropdown ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />}
+                {open && <Dropdown className="dropDown" ref={ref} options={options} onChange={changeValue} value={defaultOption} placeholder="Select an option" />}
             </div>
             {open && <ControlledEditor onBeforeChange={handleChange} value={value} className="code" options={{
                 lineWrapping: true,
