@@ -3,26 +3,44 @@ import Editor from '../../components/Editor/Editor.component'
 import Header from '../../components/Header/Header.component'
 
 function Create(props) {
+
     const [html, setHtml] = useState('')
     const [css, setCss] = useState('')
     const [js, setJs] = useState('')
     const [source, setSource] = useState('')
-    console.log(props.match.params.id)
-    console.log(props)
 
     const id = props.match.params.id
 
-    const webObj = {
-        id,
-        html,
-        js,
-        css
+    function editLocalStorage(id, html, css, js){
+        const getValue = JSON.parse(localStorage.getItem('hack')) || []
+        console.log(getValue)
+        const code = getValue.find(c => c.id === id)
+        if(code){
+            // console.log(code)
+            code.html = html
+            code.css = css
+            code.js = js
+            localStorage.setItem('hack', JSON.stringify(getValue))
+        } else {
+            // getValue.push({id, html, css, js})
+            localStorage.setItem('hack', JSON.stringify([ {id, html, css, js}, ...getValue]))
+        }
     }
 
-    console.log(webObj)
+    useEffect(() => {
+        const hack = JSON.parse(localStorage.getItem('hack')) || []
+        const hackCode = hack.find(c => c.id === id)
+        if(hackCode){
+            setHtml(hackCode.html)
+            setCss(hackCode.css)
+            setJs(hackCode.js)
+        } else {
+            return
+        }
+    }, [])
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
+        const timeout = setTimeout(() => { 
             setSource(`
                 <html>
                     <body>${html}</body>
@@ -30,12 +48,15 @@ function Create(props) {
                     <script>${js}</script>
                 </html>
             `)
-            const getArray = localStorage.getItem('array') | []
-            console.log(getArray)
-            // localStorage.setItem(array, JSON.stringify(webObj))
         }, 100)
-        return () => clearTimeout(timeout)
-    }, [html, css, js])
+        const timeoutLocalStorage = setTimeout(() => {
+            editLocalStorage(id, html, css, js)
+        }, 500)
+        return () => {
+            clearTimeout(timeout)
+            clearTimeout(timeoutLocalStorage)
+        }
+    }, [html, css, js, id])
 
     return (
         <>
