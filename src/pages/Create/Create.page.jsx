@@ -2,11 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Editor from '../../components/Editor/Editor.component'
 import Header from '../../components/Header/Header.component'
 
-function Create() {
+function Create(props) {
     const [html, setHtml] = useState('')
     const [css, setCss] = useState('')
     const [js, setJs] = useState('')
     const [source, setSource] = useState('')
+    console.log(props.match.params.id)
+    console.log(props)
+
+    const id = props.match.params.id
+
+    const webObj = {
+        id,
+        html,
+        js,
+        css
+    }
+
+    console.log(webObj)
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -17,6 +30,9 @@ function Create() {
                     <script>${js}</script>
                 </html>
             `)
+            const getArray = localStorage.getItem('array') | []
+            console.log(getArray)
+            // localStorage.setItem(array, JSON.stringify(webObj))
         }, 100)
         return () => clearTimeout(timeout)
     }, [html, css, js])
