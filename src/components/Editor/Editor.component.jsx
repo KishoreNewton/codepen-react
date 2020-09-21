@@ -53,7 +53,7 @@ function Editor({ title, language, value, onChange, theme }) {
         changeOption(value.value)
     }
     
-    const [defaultOption, changeOption] = useState(options[0].value)
+    const [defaultOption, changeOption] = useState(options[5].value)
 
     const ref = useRef(theme)
 
