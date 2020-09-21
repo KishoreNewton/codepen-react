@@ -8,28 +8,10 @@ function Create() {
     const [js, setJs] = useState('')
     const [source, setSource] = useState('')
 
-    window.addEventListener('message', function(response) {
-        if (response.data && response.data.source === 'iframe') {
-          console.log(response.data.message);
-        }
-    })
-
     useEffect(() => {
         const timeout = setTimeout(() => {
             setSource(`
                 <html>
-                    <script>
-                        const _log = console.log;
-                        console.log = function (...rest) {
-                            window.parent.postMessage({
-                                    source: 'iframe',
-                                    message: rest,
-                                },
-                                '*'
-                            );
-                            _log.apply(console, arguments);
-                        }                    
-                    </script>
                     <body>${html}</body>
                     <style>${css}</style>
                     <script>${js}</script>
