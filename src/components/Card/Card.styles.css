@@ -1,0 +1,133 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #17141D;
+    color: white;
+    font-family: 'DM Mono', monospace
+}
+
+* {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-list {
+    display: flex;
+    padding: 3rem;
+    overflow-x: scroll;
+}
+
+.card-list::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.card-list::-webkit-scrollbar-thumb {
+    background: #2b2636;
+    border-radius: 10px;
+    box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, .25);
+}
+
+.card-list::-webkit-scrollbar-track {
+    background: linear-gradient(90deg, #201C29, #201c20 1px, #17141D 0, #17141D);
+}
+
+.card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 400px;
+    min-width: 250px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: #17141D;
+    box-shadow: -32px -1px 49px 6px rgba(0,0,0,0.43);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-1rem);
+}
+
+.card:hover~.card {
+    transform: translateX(130px);
+}
+
+.create:hover{
+    background: linear-gradient(90deg, #275694bd, #02af36cc);
+    animation: colorRotate 6s linear 0s infinite;
+
+}
+
+@keyframes colorRotate {
+    from {
+        background: #7070e6;
+        color: #ffffff;
+    }
+    10% {
+        background: #4e94c2;
+        color: #b6b6b6;
+    }
+    50% {
+        background: #55bd55;
+        color: #757373;
+    }
+    75% {
+        background: #ff3399;
+        color: #494848;
+    }
+    100% {
+        background: #5b5baf;
+        color: #050505;
+    }
+  }
+
+
+.card:not(:first-child) {
+    margin-left: -130px;
+}
+
+.card-author {
+    position: relative;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    align-items: center;
+    margin: 3rem 0 0;
+}
+
+.author-avatar img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    overflow: hidden;
+    margin: 16px 10px;
+}
+
+.half-circle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 48px;
+    fill: none;
+    stroke: #ff8a00;
+    stroke-width: 8;
+    stroke-linecap: round;
+    pointer-events: none;
+}
+
+.author-name-prefix {
+    font-style: normal;
+    font-weight: 700;
+    color: #7a7a8c;
+}
+
+.card-header h2:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52ee5);
+    text-shadow: none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+}
